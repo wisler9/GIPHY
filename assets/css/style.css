@@ -1,0 +1,13 @@
+/* html,
+body {
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    font-family: 'Cairo', sans-serif;
+    /* font-family: 'Teko', sans-serif; */
+
+
+.form-group label {
+    font-size: 200%;
+}
+
