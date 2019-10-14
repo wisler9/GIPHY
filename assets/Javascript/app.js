@@ -7,17 +7,20 @@ var userInput = $("#buttons-view");
 // on click function that setting up the listener
 // $("this").on("click", function() {
 // var queryURL = "https://api.giphy.com/v1/gifs/random?tag=burrito&api_key=p4ly4CHotZxq0ByEAyupf4MiOEb9XyVo";
-var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=p4ly4CHotZxq0ByEAyupf4MiOEb9XyVo&q="+userInput+"&limit=20&offset=0&rating=G&lang=en";
 
-$.ajax({
-    url: queryURL,
-    method: "GET"
-}).then(function(response){
+// var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=p4ly4CHotZxq0ByEAyupf4MiOEb9XyVo&q="+userInput+"&limit=20&offset=0&rating=G&lang=en";
+// var baseURL = "https://api.giphy.com/v1/gifs/search?q=";
+
+
+// $.ajax({
+//     url: queryURL,
+//     method: "GET"
+// }).then(function(response){
    
     // get the imageURL from the ajax response
     // var imageUrl = response.limit; 
     // var imageUrl = response.ratings;
-    console.log(response);
+    // console.log(response);
     // creating and image element
     // var Images = $("<img>");
     // creating the attribute of the cat Image - src as image_url, alt as image cat
@@ -27,8 +30,10 @@ $.ajax({
     //adding the catImage to the HTML page to display
     // $("#images").prepend(catImage);
     
-  });
+//   });
 
+var apiKey = "p4ly4CHotZxq0ByEAyupf4MiOEb9XyVo";
+    var baseURL = "https://api.giphy.com/v1/gifs/search?q=";
 
 
 
@@ -39,8 +44,8 @@ $.ajax({
         var newBtn = $("<button>");
         newBtn.text(topics[i]);
         newBtn.addClass("btn btn-info Animalbtns");
-        newBtn.attr("data-topic",topics[i]);
-        $(".giphy_btns").append(newBtn);
+        newBtn.attr("anima-topic",topics[i]);
+        $(".buttons-view").append(newBtn);
     }    
 }
 
@@ -50,15 +55,15 @@ $("#add_btn").on("click",function(event){
 
     var Animal = $("#Animal_inp").val().trim();
     topics.push(Animal);
-    $(".giphy_btns").empty();
+    $(".buttons-view").empty();
     makeButton();
     $("#Animal_inp").val("");
 });
 
-$(".giphy_btns").on("click",".Animalbtns",function(event){
-    $(".gifs_group").empty();
+$(".buttons-view").on("click",".Animalbtns",function(event){
+    $(".anim_all").empty();
 
-    var searchTerm = $(this).attr("data-topic");
+    var searchTerm = $(this).attr("anima-topic");
     console.log(searchTerm);
     var limit = 20;
     var rating;
@@ -85,7 +90,7 @@ $(".giphy_btns").on("click",".Animalbtns",function(event){
             divImage.attr("data-state","still");
             divImage.attr("data-animate",response.data[i].images.fixed_height.url);
             newDiv.append(divImage);
-            $(".gifs_group").append(newDiv);
+            $(".anim_all").append(newDiv);
             cnt++;
         }
 
@@ -107,45 +112,6 @@ $(document).on("click",".Animalimg",function(event){
 
 
 makeButton();
-
-
-// });
-// $("#buttons-view").prepend("<div>"+year+ "</div>");
-// $("#buttons-view").prepend("<div>"+plot+ "</div>");
-// $("#buttons-view").prepend("<div>"+ratings+ "</div>");
-// $("#buttons-view").prepend("<img src="+moviePoster+">");
-
-// }
-
-
-// function renderButtons() {
-
-//     // Deletes the movies prior to adding new movies
-//     // (this is necessary otherwise you will have repeat buttons)
-//     $("#buttons-view").empty();
-
-//     // Loops through the array of movies
-//     for (var i = 0; i < topic.length; i++) {
-
-//       // Then dynamicaly generates buttons for each movie in the array
-//       // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-//       var a = $("<button>");
-//       // Adds a class of movie to our button
-//       a.addClass("movie");
-//       // Added a data-attribute
-//       a.attr("data-name", topic[i]);
-//       // Provided the initial button text
-//       a.text(topic[i]);
-//       // Added the button to the buttons-view div
-//       $("#buttons-view").append(a);
-//     }
-//   }
-
-
-
-
-
-
 
 
 
